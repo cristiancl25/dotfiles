@@ -27,6 +27,7 @@ set shiftwidth=4 " when indenting with '>', use 4 spaces width
 set expandtab " On pressing tab, insert 4 spaces
 set hlsearch " Highlight search
 set incsearch "Preview of the search
+" set nofoldenable " Disables block code contraction
 
 " Mute search highlighting
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
