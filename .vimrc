@@ -2,7 +2,6 @@
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
-
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -12,7 +11,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 "Plug 'vim-syntastic/syntastic'
-
 call plug#end() " Initialize plugin system
 
 " General configuration
@@ -32,16 +30,18 @@ set incsearch "Preview of the search
 " Mute search highlighting
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
-"ZSH autocompletion integration
+
+" ZSH autocompletion integration
 set wildmenu
 set wildmode=full
 
-"" air-line
+
+" air-line
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 
-"theme gruvbox
+" gruvbox theme
 let g:airline_theme='gruvbox'
 colorscheme gruvbox
 set background=dark
@@ -51,9 +51,18 @@ let g:grubvox_contrast='soft'
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
 
+
 " TagBar
 " Needs exuberant-ctags installed
 nmap <F8> :TagbarToggle<CR>
+
+
+" vim-go plugin configuration
+nmap gi :GoInfo<CR>
+nmap gb :GoBuild<CR>
+nmap gr :GoReferrers<CR>
+nmap gl :GoMetaLinter<CR>
+
 
 " Syntastic
 "set statusline+=%#warningmsg#
