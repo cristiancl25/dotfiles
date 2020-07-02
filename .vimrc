@@ -10,7 +10,7 @@ Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
-"Plug 'vim-syntastic/syntastic'
+Plug 'dense-analysis/ale'
 call plug#end() " Initialize plugin system
 
 " General configuration
@@ -64,12 +64,9 @@ nmap gr :GoReferrers<CR>
 nmap gl :GoMetaLinter<CR>
 
 
-" Syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
+" ALE
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '.'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 0
