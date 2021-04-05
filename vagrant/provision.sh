@@ -12,7 +12,7 @@ sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent sof
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
-sudo apt-get update 
+sudo apt-get update
 sudo apt-get install -y git vim neovim zsh curl wget docker-ce docker-ce-cli containerd.io gnome gnome-tweak-tool python-pip python3-pip alacarte
 sudo usermod -a -G docker vagrant
 
@@ -79,7 +79,7 @@ export GOROOT=${GOROOT}
 export GOPATH=${VAGRANT_HOME}/go
 export JAVA_HOME=${JAVA_HOME}
 export MAVEN_HOME=${MAVEN_HOME}
-export PATH=${GOROOT}/bin:${GOPATH}/bin:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${VAGRANT_HOME}/.local/bin/${PATH}
+export PATH=${GOROOT}/bin:${GOPATH}/bin:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${VAGRANT_HOME}/.local/bin:${PATH}
 EOFILE
 chmod +x /vagrant/vagrant_env.sh
 
