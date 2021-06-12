@@ -1,12 +1,12 @@
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
-Plug 'preservim/nerdtree'
+"Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
@@ -26,6 +26,12 @@ set hlsearch " Highlight search
 set incsearch "Preview of the search
 " set nofoldenable " Disables block code contraction
 
+
+" CoC default extensions
+let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-xml', 'coc-toml', 'coc-yank', 'coc-go', 'coc-jedi', 'coc-explorer']
+nnoremap <C-n> :CocCommand explorer<CR>
+
+
 " Mute search highlighting
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
@@ -38,6 +44,11 @@ set wildmode=full
 " air-line
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tabs = 1
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#tabs_label = 't'
+let g:airline#extensions#tabline#buffers_label = 'b'
 
 
 " gruvbox theme
@@ -45,10 +56,6 @@ let g:airline_theme='gruvbox'
 colorscheme gruvbox
 set background=dark
 let g:grubvox_contrast='soft'
-
-
-" NerdTree
-map <C-n> :NERDTreeToggle<CR>
 
 
 " TagBar

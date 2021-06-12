@@ -1,0 +1,16 @@
+{
+    // coc-explorer
+    "explorer.icon.enableNerdfont": true,
+    "explorer.icon.enableVimDevicons": true,
+    "explorer.quitOnOpen": true,
+    "explorer.file.showHiddenFiles": true,
+    "explorer.git.icon.status.added": "✚",
+    "explorer.git.icon.status.deleted": "✖",
+    "explorer.git.icon.status.renamed": "➜",
+    "explorer.git.icon.status.unmerged": "≠",
+    "explorer.git.icon.status.untracked": "?",
+    "explorer.git.icon.status.modified": "✹",
+    "explorer.git.icon.status.ignored": "☒",
+    "explorer.git.icon.status.mixed": "*",
+    "explorer.file.column.clip.copy": ""
+}
