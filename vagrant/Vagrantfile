@@ -13,10 +13,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "hashicorp/bionic64"
-
-  # Change the default size of the VM. Needs the environments variable VAGRANT_EXPERIMENTAL="disks" for working
-  # config.vm.disk :disk, size: "100GB", primary: true
-  # config.disksize.size = '100GB' # For resize needs vagrant-disksize plugin
+  config.disksize.size = '100GB' # For resize needs vagrant-disksize plugin: vagrant plugin install vagrant-disksize
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs

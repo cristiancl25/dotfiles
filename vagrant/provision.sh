@@ -6,18 +6,19 @@ VAGRANT_PROJECT_FOLDER=${VAGRANT_SHARED_FOLDER}/projects
 VAGRANT_HOME=/home/vagrant
 
 # UBUNTU
-# # Configure docker repository
-sudo apt-get update
-sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
-sudo apt-get update
-sudo apt-get install -y git vim neovim zsh curl wget docker-ce docker-ce-cli containerd.io gnome gnome-tweak-tool python-pip python3-pip alacarte
+# Configure docker repository
+sudo apt update
+sudo apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt update
+sudo apt install -y git vim zsh wget docker-ce docker-ce-cli containerd.io gnome gnome-tweak-tool python3-pip nodejs npm alacarte
 sudo usermod -a -G docker vagrant
 
 # I3 window mannager setup
-sudo apt-get install -y i3 i3status dmenu rofi i3lock xbacklight feh conky lxappearance arc-theme fonts-font-awesome fonts-powerline
+sudo apt install -y i3 i3status dmenu rofi i3lock xbacklight feh conky lxappearance arc-theme fonts-font-awesome fonts-powerline
 pip3 install bumblebee-status # Bar mannager for i3
 sudo timedatectl set-timezone Europe/Madrid
 
@@ -25,8 +26,14 @@ sudo timedatectl set-timezone Europe/Madrid
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 sudo ln -s /home/vagrant/.local/kitty.app/bin/kitty /usr/bin/kitty
 
+# Install and configure Neovim with vim-plug (https://github.com/junegunn/vim-plug)
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod u+x nvim.appimage
+sudo mv nvim.appimage /usr/bin/nvim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
 # Docker Compose instalation
-sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # FEDORA
@@ -79,8 +86,11 @@ export GOROOT=${GOROOT}
 export GOPATH=${VAGRANT_HOME}/go
 export JAVA_HOME=${JAVA_HOME}
 export MAVEN_HOME=${MAVEN_HOME}
-export PATH=${GOROOT}/bin:${GOPATH}/bin:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${VAGRANT_HOME}/.local/bin:${PATH}
+export 'PATH=${GOROOT}/bin:${GOPATH}/bin:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${VAGRANT_HOME}/.local/bin:${PATH}'
 EOFILE
 chmod +x /vagrant/vagrant_env.sh
+
+echo "source /vagrant/vagrant_env.sh" >> ${VAGRANT_HOME}/.zshrc
+echo "source /vagrant/vagrant_env.sh" >> ${VAGRANT_HOME}/.bashrc
 
 sudo reboot
