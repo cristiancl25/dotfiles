@@ -1,2 +1,3 @@
 *.swp
 .vagrant
+vagrant_env.sh

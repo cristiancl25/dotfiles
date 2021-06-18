@@ -1,7 +1,6 @@
 {
     // coc-explorer
     "explorer.icon.enableNerdfont": true,
-    "explorer.icon.enableVimDevicons": true,
     "explorer.quitOnOpen": true,
     "explorer.file.showHiddenFiles": true,
     "explorer.git.icon.status.added": "✚",

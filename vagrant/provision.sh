@@ -14,7 +14,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 sudo apt update
-sudo apt install -y git vim zsh wget docker-ce docker-ce-cli containerd.io gnome gnome-tweak-tool python3-pip nodejs npm alacarte
+sudo apt install -y git vim zsh wget docker-ce docker-ce-cli containerd.io gnome gnome-tweak-tool python3-pip python3-venv nodejs npm alacarte
 sudo usermod -a -G docker vagrant
 
 # I3 window mannager setup
@@ -58,13 +58,6 @@ sudo tar -zxf $(basename $JDK_TAR_URL)
 sudo rm $(basename $JDK_TAR_URL)
 JAVA_HOME=/opt/$(ls | grep jdk | head -1)
 
-# echo "JDK 8 https://adoptopenjdk.net/"
-# JDK_TAR_URL=https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u282-b08/OpenJDK8U-jdk_x64_linux_hotspot_8u282b08.tar.gz
-# sudo wget ${JDK_TAR_URL} &> /dev/null
-# sudo tar -zxf $(basename $JDK_TAR_URL)
-# sudo rm $(basename $JDK_TAR_URL)
-# JAVA_HOME=/opt/$(ls | grep jdk | head -1)
-
 echo "MAVEN https://maven.apache.org/download.cgi"
 MAVEN_VERSION=3.6.3
 MAVEN_TAR_URL=https://ftp.cixug.es/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
@@ -73,8 +66,24 @@ sudo tar -zxf $(basename $MAVEN_TAR_URL)
 sudo rm $(basename $MAVEN_TAR_URL )
 MAVEN_HOME=/opt/$(ls | grep maven | head -1)
 
+echo "SPARK https://spark.apache.org/"
+SPARK_VERSION=3.1.2
+SPARK_TAR_URL=https://ftp.cixug.es/apache/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop3.2.tgz
+sudo wget ${SPARK_TAR_URL} -q
+sudo tar -zxf $(basename $SPARK_TAR_URL)
+sudo rm $(basename $SPARK_TAR_URL)
+SPARK_HOME=/opt/$(ls | grep spark | head -1)
+
 # Configure spanish keyboard layout for gnome
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'es')]"
+
+# Nvm and node install
+export PROFILE=$HOME/.zshrc
+export NODE_VERSION=16.3.0
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+# Install latest version of node
+#nvm install node
+#nvm use node
 
 # Install Oh My ZSH and set as default shell
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -86,11 +95,11 @@ export GOROOT=${GOROOT}
 export GOPATH=${VAGRANT_HOME}/go
 export JAVA_HOME=${JAVA_HOME}
 export MAVEN_HOME=${MAVEN_HOME}
-export 'PATH=${GOROOT}/bin:${GOPATH}/bin:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${VAGRANT_HOME}/.local/bin:${PATH}'
+export SPARK_HOME=${SPARK_HOME}
+export PATH=\${GOROOT}/bin:\${GOPATH}/bin:\${JAVA_HOME}/bin:\${MAVEN_HOME}/bin:\${SPARK_HOME}/bin:\${HOME}/.local/bin:\${PATH}
 EOFILE
 chmod +x /vagrant/vagrant_env.sh
 
 echo "source /vagrant/vagrant_env.sh" >> ${VAGRANT_HOME}/.zshrc
-echo "source /vagrant/vagrant_env.sh" >> ${VAGRANT_HOME}/.bashrc
 
 sudo reboot

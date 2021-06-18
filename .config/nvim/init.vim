@@ -2,6 +2,7 @@
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.local/share/nvim/plugged')
+"Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -19,16 +20,16 @@ set number
 set laststatus=2
 set t_Co=256
 set autoindent
-set tabstop=4 " show existing tab with 4 spaces width
-set shiftwidth=4 " when indenting with '>', use 4 spaces width
-set expandtab " On pressing tab, insert 4 spaces
+"set tabstop=4 " show existing tab with 4 spaces width
+"set shiftwidth=4 " when indenting with '>', use 4 spaces width
+"set expandtab " On pressing tab, insert 4 spaces
 set hlsearch " Highlight search
 set incsearch "Preview of the search
 " set nofoldenable " Disables block code contraction
 
 
 " CoC default extensions
-let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-xml', 'coc-toml', 'coc-yank', 'coc-go', 'coc-jedi', 'coc-explorer']
+let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-xml', 'coc-toml', 'coc-yank', 'coc-go', 'coc-pyright', 'coc-explorer']
 nnoremap <C-n> :CocCommand explorer<CR>
 
 
