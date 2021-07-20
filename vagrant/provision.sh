@@ -15,6 +15,7 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt-get update
 sudo apt-get install -y git vim neovim zsh curl wget docker-ce docker-ce-cli containerd.io gnome gnome-tweak-tool python-pip python3-pip alacarte
 sudo usermod -a -G docker vagrant
+sudo usermod -a -G vboxsf vagrant
 
 # I3 window mannager setup
 sudo apt-get install -y i3 i3status dmenu rofi i3lock xbacklight feh conky lxappearance arc-theme fonts-font-awesome fonts-powerline
