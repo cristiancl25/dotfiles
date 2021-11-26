@@ -40,11 +40,6 @@ export GOPATH=${VAGRANT_HOME}/go
 echo "KIND https://kind.sigs.k8s.io/"
 GO111MODULE="on" go get -v sigs.k8s.io/kind@v0.11.1
 
-echo "KUBECTL https://kubernetes.io/es/docs/tasks/tools/install-kubectl/"
-sudo curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo chmod +x ./kubectl
-sudo mv kubectl ${GOPATH}/bin
-
 echo "JDK 11 https://adoptopenjdk.net/"
 JDK_TAR_URL=https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.10%2B9/OpenJDK11U-jdk_x64_linux_hotspot_11.0.10_9.tar.gz
 sudo wget ${JDK_TAR_URL} &> /dev/null
