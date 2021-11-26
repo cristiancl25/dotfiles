@@ -10,7 +10,7 @@ sudo dnf group install -y "Fedora Workstation" "i3 desktop"
 sudo systemctl set-default graphical.target
 sudo systemctl enable gdm.service
 sudo dnf install -y git vim neovim zsh kitty wget podman podman-compose skopeo buildah python3-pip python3.8 \
-    poetry nodejs npm golang gnome-tweaks alacarte origin-clients helm gparted
+    poetry nodejs npm golang gnome-tweaks gnome-extensions-app alacarte origin-clients helm gparted sqlite xset
 
 # Configure GITHUB client https://github.com/cli/cli"
 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
@@ -20,7 +20,8 @@ sudo dnf install -y gh
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'es')]"
 
 # I3 window mannager setup
-sudo dnf install -y i3status dmenu rofi i3lock xbacklight feh conky lxappearance arc-theme fontawesome-fonts powerline powerline-fonts
+sudo dnf install -y i3status dmenu rofi i3lock xbacklight feh conky lxappearance arc-theme fontawesome-fonts \
+    powerline powerline-fonts fira-code-fonts
 pip install bumblebee-status # Bar mannager for i3
 sudo timedatectl set-timezone Europe/Madrid
 
