@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 VAGRANT_USER_PASS=vagrant
 VAGRANT_SHARED_FOLDER=/vagrant
@@ -9,7 +10,7 @@ sudo dnf group install -y "Fedora Workstation" "i3 desktop"
 sudo systemctl set-default graphical.target
 sudo systemctl enable gdm.service
 sudo dnf install -y git vim neovim zsh kitty wget podman podman-compose skopeo buildah python3-pip python3.8 \
-    poetry nodejs npm golang gnome-tweaks alacarte origin-clients kubernetes-client
+    poetry nodejs npm golang gnome-tweaks alacarte kubernetes-client helm gparted
 
 # Configure GITHUB client https://github.com/cli/cli"
 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
@@ -19,12 +20,16 @@ sudo dnf install -y gh
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'es')]"
 
 # I3 window mannager setup
-sudo apt install -y i3status dmenu rofi i3lock xbacklight feh conky lxappearance arc-theme fontawesome-fonts powerline powerline-fonts
+sudo dnf install -y i3status dmenu rofi i3lock xbacklight feh conky lxappearance arc-theme fontawesome-fonts powerline powerline-fonts
 pip install bumblebee-status # Bar mannager for i3
 sudo timedatectl set-timezone Europe/Madrid
 
 # Configure Neovim with vim-plug (https://github.com/junegunn/vim-plug)
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+# Install custom dotfiles
+cd ${HOME} && git clone https://github.com/cristiancl25/dotfiles -b develop
+./dotfiles/install.sh
 
 cd /opt
 
@@ -65,7 +70,7 @@ SPARK_HOME=/opt/$(ls | grep spark | head -1)
 
 # Nvm and node install
 export PROFILE=$HOME/.zshrc
-export NODE_VERSION=16.3.0
+#export NODE_VERSION=16.3.0
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 # Install latest version of node
 #nvm install node
@@ -75,6 +80,9 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 echo "$VAGRANT_USER_PASS" | chsh -s $(which zsh)
 
+# Sets default plugins for oh my zsh
+sed -i '/plugins=/s/.*/plugins=(git oc kubectl gh)/' ${HOME}/.zshrc
+
 cat <<-EOFILE > "/vagrant/vagrant_env.sh"
 #!/bin/bash
 #export GOROOT=${GOROOT}
@@ -83,6 +91,10 @@ export JAVA_HOME=${JAVA_HOME}
 export MAVEN_HOME=${MAVEN_HOME}
 export SPARK_HOME=${SPARK_HOME}
 export PATH=\${GOPATH}/bin:\${JAVA_HOME}/bin:\${MAVEN_HOME}/bin:\${SPARK_HOME}/bin:\${HOME}/.local/bin:\${PATH}
+
+alias p=podman
+alias pc=podman-compose
+alias docker=podman
 EOFILE
 chmod +x /vagrant/vagrant_env.sh
 

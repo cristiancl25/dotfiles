@@ -14,6 +14,7 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "fedora/35-cloud-base"
   config.disksize.size = '100GB' # For resize needs vagrant-disksize plugin: vagrant plugin install vagrant-disksize
+  # May need resize inside the VM with Gparted, because the extra space is unused
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
