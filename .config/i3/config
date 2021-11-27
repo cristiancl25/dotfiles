@@ -184,11 +184,12 @@ bar {
 	# Status bar from https://github.com/tobi-wan-kenobi/bumblebee-status
 	font pango:inconsolata 10
 	tray_output none
-	status_command /home/vagrant/.local/bin/bumblebee-status \
-		-m shell indicator layout-xkbswitch disk memory datetime dunst \
-		-p shell.command="whoami" \
-        	-p datetime.format="%H:%M:%-S %d/%m/%Y" \
-		-t gruvbox-powerline
+	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	#status_command /home/vagrant/.local/bin/bumblebee-status \
+	#	-m shell indicator layout-xkbswitch disk memory datetime dunst \
+	#	-p shell.command="whoami" \
+    #	-p datetime.format="%H:%M:%-S %d/%m/%Y" \
+	#	-t gruvbox-powerline
 	colors {
 		# bar background color
 		background $bg
