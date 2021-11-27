@@ -188,7 +188,7 @@ bar {
 	#status_command ~/.local/bin/bumblebee-status \
 	#	-m shell indicator layout-xkbswitch disk memory datetime dunst \
 	#	-p shell.command="whoami" \
-    #	-p datetime.format="%H:%M:%-S %d/%m/%Y" \
+	#	-p datetime.format="%H:%M:%-S %d/%m/%Y" \
 	#	-t gruvbox-powerline
 	colors {
 		# bar background color
