@@ -10,7 +10,8 @@ sudo systemctl set-default graphical.target
 #sudo systemctl disable lightdm.service
 #sudo systemctl enable gdm.service
 sudo dnf install -y git vim neovim zsh kitty wget podman podman-compose skopeo buildah python3-pip python3.8 \
-    poetry nodejs npm golang gnome-tweaks gnome-extensions-app alacarte origin-clients helm gparted sqlite xset jq
+    poetry nodejs npm golang gnome-tweaks gnome-extensions-app alacarte origin-clients helm gparted sqlite \
+    xset jq sysstat
 
 # Configure GITHUB client https://github.com/cli/cli"
 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
@@ -45,6 +46,7 @@ export GOPATH=${VAGRANT_HOME}/go
 
 #echo "KIND https://kind.sigs.k8s.io/"
 #GO111MODULE="on" go get -v sigs.k8s.io/kind@v0.11.1
+# Alternative to KIND for kubernetes local: https://github.com/k3s-io/k3s
 
 echo "JDK 11 https://adoptopenjdk.net/"
 JDK_TAR_URL=https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.10%2B9/OpenJDK11U-jdk_x64_linux_hotspot_11.0.10_9.tar.gz
