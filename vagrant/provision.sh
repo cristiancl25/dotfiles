@@ -84,7 +84,7 @@ echo "$VAGRANT_USER_PASS" | chsh -s $(which zsh)
 # Sets default plugins for oh my zsh
 sed -i '/plugins=/s/.*/plugins=(git oc kubectl gh)/' ${HOME}/.zshrc
 
-cat <<-EOFILE > "/vagrant/vagrant_env.sh"
+cat <<-EOFILE > "/sharedfs/vagrant_env.sh"
 #!/bin/bash
 #export GOROOT=${GOROOT}
 export GOPATH=${GOPATH}
@@ -97,8 +97,8 @@ alias p=podman
 alias pc=podman-compose
 alias docker=podman
 EOFILE
-chmod +x /vagrant/vagrant_env.sh
+chmod +x /sharedfs/vagrant_env.sh
 
-echo "source /vagrant/vagrant_env.sh" >> ${VAGRANT_HOME}/.zshrc
+echo "source /sharedfs/vagrant_env.sh" >> ${VAGRANT_HOME}/.zshrc
 
 sudo reboot
