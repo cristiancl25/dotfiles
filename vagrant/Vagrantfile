@@ -16,6 +16,12 @@ Vagrant.configure("2") do |config|
   config.disksize.size = '100GB' # For resize needs vagrant-disksize plugin: vagrant plugin install vagrant-disksize
   # May need resize inside the VM with Gparted, because the extra space is unused
 
+  # create a shared folder for the top-level project directory at /vagrant
+  # normally already configured but for some reason it isn't on some boxes
+  # https://www.vagrantup.com/docs/synced-folders/virtualbox.html#automount
+  # http://www.virtualbox.org/manual/ch04.html#sf_mount_auto
+  config.vm.synced_folder ".", "/sharedfs", id: "vagrant", automount: true
+
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
