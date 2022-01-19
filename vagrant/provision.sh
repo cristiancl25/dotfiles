@@ -11,7 +11,7 @@ sudo systemctl set-default graphical.target
 #sudo systemctl enable gdm.service
 sudo dnf install -y git vim neovim zsh kitty wget podman podman-compose skopeo buildah python3-pip python3.8 \
     poetry nodejs npm golang gnome-tweaks gnome-extensions-app alacarte origin-clients helm gparted sqlite \
-    xset jq sysstat
+    xset jq sysstat ripgrep
 
 # Configure GITHUB client https://github.com/cli/cli"
 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
