@@ -30,7 +30,7 @@ set incsearch "Preview of the search
 
 
 " CoC default extensions
-let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-xml', 'coc-toml', 'coc-yank', 'coc-go', 'coc-pyright', 'coc-explorer']
+let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-xml', 'coc-toml', 'coc-yank', 'coc-go', 'coc-pyright', 'coc-explorer', 'coc-sh']
 nnoremap <C-n> :CocCommand explorer<CR>
 
 
