@@ -30,7 +30,7 @@ sudo timedatectl set-timezone Europe/Madrid
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # Install custom dotfiles
-cd ${HOME} && git clone https://github.com/cristiancl25/dotfiles -b feature/fedora
+cd ${HOME} && git clone https://github.com/cristiancl25/dotfiles
 ./dotfiles/install.sh
 
 cd /opt
