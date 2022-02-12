@@ -5,7 +5,7 @@ VAGRANT_USER_PASS=vagrant
 VAGRANT_HOME=/home/vagrant
 
 sudo dnf upgrade -y
-sudo dnf group install -y "Fedora Workstation" "i3 desktop"
+sudo dnf group install -y "Fedora Workstation" "i3 desktop" "C Development Tools and Libraries" "Python Science"
 sudo systemctl set-default graphical.target
 #sudo systemctl disable lightdm.service
 #sudo systemctl enable gdm.service
@@ -17,11 +17,17 @@ sudo dnf install -y git vim neovim zsh kitty wget podman podman-compose skopeo b
 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
 sudo dnf install -y gh
 
+# Install VSCode
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+dnf check-update
+sudo dnf install code -y
+
 # Configure spanish keyboard layout for gnome
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'es')]"
 
 # I3 window mannager setup
-sudo dnf install -y i3status dmenu rofi i3lock xbacklight feh conky lxappearance arc-theme fontawesome-fonts \
+sudo dnf install -y i3status i3blocks wget dmenu rofi i3lock xbacklight feh conky lxappearance arc-theme fontawesome-fonts \
     powerline powerline-fonts fira-code-fonts
 pip install bumblebee-status # Bar mannager for i3
 sudo timedatectl set-timezone Europe/Madrid
@@ -43,6 +49,9 @@ cd /opt
 #sudo rm $(basename $GOLANG_TAR_URL)
 #GOROOT=/opt/$(ls | grep go | head -1)
 export GOPATH=${VAGRANT_HOME}/go
+
+# Install yq from go source
+GO111MODULE=on go get github.com/mikefarah/yq/v4
 
 #echo "KIND https://kind.sigs.k8s.io/"
 #GO111MODULE="on" go get -v sigs.k8s.io/kind@v0.11.1
@@ -98,6 +107,7 @@ export PATH=\${GOPATH}/bin:\${JAVA_HOME}/bin:\${MAVEN_HOME}/bin:\${SPARK_HOME}/b
 alias p=podman
 alias pc=podman-compose
 alias docker=podman
+alias cr="clear && reset"
 EOFILE
 chmod +x /sharedfs/vagrant_env.sh
 
