@@ -27,8 +27,8 @@ sudo dnf install code -y
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'es')]"
 
 # I3 window mannager setup
-sudo dnf install -y i3status i3blocks wget dmenu rofi i3lock xbacklight feh conky lxappearance arc-theme fontawesome-fonts \
-    powerline powerline-fonts fira-code-fonts
+sudo dnf install -y i3status i3blocks wget dmenu rofi ulauncher i3lock xbacklight feh conky lxappearance arc-theme fontawesome-fonts \
+    powerline powerline-fonts fira-code-fonts lxpolkit compton
 pip install bumblebee-status # Bar mannager for i3
 sudo timedatectl set-timezone Europe/Madrid
 
