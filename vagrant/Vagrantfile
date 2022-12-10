@@ -12,7 +12,8 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "fedora/35-cloud-base"
+  config.vm.box = "fedora/37-cloud-base"
+  config.vm.box_version = "37.20221105.0"
   config.disksize.size = '100GB' # For resize needs vagrant-disksize plugin: vagrant plugin install vagrant-disksize
   # May need resize inside the VM with Gparted, because the extra space is unused
 
@@ -61,7 +62,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
     # Display the VirtualBox GUI when booting the machine
     vb.gui = true
-    vb.check_guest_additions = true
+    vb.check_guest_additions = true # vagrant plugin install vagrant-vbguest
   
     vb.memory = 8192
     vb.cpus = 4
