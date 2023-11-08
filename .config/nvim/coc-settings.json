@@ -1,9 +1,0 @@
-{
-    "python.formatting.provider": "black",
-    "python.formatting.blackPath": "black",
-    "coc.preferences.formatOnType": true,
-    "coc.preferences.formatOnSaveFiletypes": ["python", "go"],
-    "coc.preferences.willSaveHandlerTimeout": 1000, 
-
-    "explorer.quitOnOpen": true,
-}
