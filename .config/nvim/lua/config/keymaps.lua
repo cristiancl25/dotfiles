@@ -10,3 +10,9 @@ vim.keymap.set(
 )
 
 vim.keymap.set("n", "<leader>gd", "<cmd>Gdiffsplit<CR>", { noremap = true, silent = true, desc = "Git diff" })
+
+vim.keymap.set('i', '<C-j>', 'copilot#Accept("<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
+vim.g.copilot_no_tab_map = true
