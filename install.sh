@@ -15,3 +15,7 @@ rm -rf ~/config/i3
 ln -s ${BASEDIR}/.config/i3 ~/.config/i3
 rm -rf ~/.config/rofi
 ln -s ${BASEDIR}/.config/rofi ~/.config/rofi
+
+# zellij
+rm -rf ~/.config/zellij
+ln -s ${BASEDIR}/.config/zellij ~/.config/zellij
