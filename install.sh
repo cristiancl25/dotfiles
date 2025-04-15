@@ -19,3 +19,7 @@ ln -s ${BASEDIR}/.config/rofi ~/.config/rofi
 # zellij
 rm -rf ~/.config/zellij
 ln -s ${BASEDIR}/.config/zellij ~/.config/zellij
+
+rm ~/.tool-versions
+ln -s ${BASEDIR}/.tool-versions ~/.tool-versions
+
