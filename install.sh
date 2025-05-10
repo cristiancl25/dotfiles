@@ -23,3 +23,6 @@ ln -s ${BASEDIR}/.config/zellij ~/.config/zellij
 rm ~/.tool-versions
 ln -s ${BASEDIR}/.tool-versions ~/.tool-versions
 
+rm ~/.zshrc
+ln -s ${BASEDIR}/.zshrc ~/.zshrc
+

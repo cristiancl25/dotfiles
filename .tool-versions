@@ -3,3 +3,4 @@ poetry 1.8.5
 neovim 0.10.2
 fd 10.2.0
 zellij 0.41.2
+uv 0.6.14
