@@ -102,12 +102,13 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH="$HOME/.asdf/bin:${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+export PATH="$HOME/.asdf/bin:${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$HOME/go/bin:$PATH"
 # set -o vi
 alias v=nvim
 alias vf='nvim $(fzf)'
 alias bat='bat --color=always --theme gruvbox-dark --style=plain'
 alias fzf='fzf --preview="bat --color=always --theme gruvbox-dark --style=plain {}" -m'
+alias k=kubectl
 alias kx=kubectx
 alias kcuc='kubectl config unset contexts'
 alias ocl='oc logout'
@@ -124,7 +125,8 @@ alias projects='cd ${PROJECTS_HOME}'
 alias l='eza'
 alias ll='eza -lah'
 
-export WHOME="/mnt/c/Users/ccl25/"
+# export WHOME="/mnt/c/Users/ccl25/"
+export WHOME="/mnt/c/Users/Comercial/"
 export BROWSER="/mnt/c/Program\ Files/Mozilla\ Firefox/firefox.exe"
 export EDITOR=nvim
 export PROJECTS_HOME=${HOME}/projects
@@ -133,17 +135,10 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --exclude .g
 export DOCKER_HOST=unix:///run/user/1000/podman/podman.sock
 export TESTCONTAINERS_RYUK_DISABLED=true #https://stackoverflow.com/questions/71549856/testcontainers-with-podman-in-java-tests
 
-function st() {
-  port=8501
-  kill -9 $(lsof -t -i:${port})
-  /mnt/c/Archivos\ de\ programa/Mozilla\ Firefox/firefox.exe --private-window http://localhost:${port}
-  poetry run streamlit run $1 --server.headless True --theme.base "light" --browser.gatherUsageStats False --server.runOnSave True --server.port ${port}
-}
-
 asdf_latest() {
   asdf plugin add $1
   asdf install $1 latest
-  asdf global $1 latest
+  asdf set $1 latest
 }
 
 # Zellij utils
@@ -168,4 +163,25 @@ function pg() {
   zri poetry run nvim $1 && zrf poetry run streamlit run $1 --server.headless True --theme.base "light" --browser.gatherUsageStats False --server.runOnSave True --server.port 8501
 }
 
-eval "$(zellij setup --generate-auto-start zsh)"
+eval "$(direnv hook zsh)"
+
+# eval "$(zellij setup --generate-auto-start zsh)"
+if [[ -z "$ZELLIJ" ]]; then
+  if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
+    zellij attach -c
+  else
+    exec zellij -l welcome
+  fi
+  if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
+    exit
+  fi
+fi
+
+
+# Added by dbt Fusion extension (ensure dbt binary dir on PATH)
+if [[ ":$PATH:" != *":/home/cristian/.local/bin:"* ]]; then
+  export PATH=/home/cristian/.local/bin:"$PATH"
+fi
+
+# Added by dbt Fusion extension
+alias dbtf=/home/cristian/.local/bin/dbt
