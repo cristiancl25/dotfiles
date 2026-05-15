@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-# Number of docker containers
-count=$(podman ps -aq | wc -l)
-# Recent docker container IP
-#recent_ip=$(docker inspect -f "{{ .NetworkSettings.IPAddress }}" $(docker ps -ql))
-#echo "$LABEL$count: $recent_ip"
-echo "$LABEL$count"
