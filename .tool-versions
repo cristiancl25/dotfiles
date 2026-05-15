@@ -11,3 +11,6 @@ maven 3.9.10
 java openjdk-21
 kubectl 1.35.2
 k9s 0.50.18
+fzf 0.71.0
+jbang 0.138.0
+pulumi 3.192.0
