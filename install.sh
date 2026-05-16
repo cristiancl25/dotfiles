@@ -26,3 +26,10 @@ mkdir -p ~/.config/lazygit
 rm -f ~/.config/lazygit/config.yml
 ln -s ${BASEDIR}/.config/lazygit/config.yml ~/.config/lazygit/config.yml
 
+# k9s (config.yaml NO se versiona: k9s lo muta con defaultView)
+mkdir -p ~/.config/k9s/skins
+rm -f ~/.config/k9s/aliases.yaml ~/.config/k9s/hotkeys.yaml ~/.config/k9s/skins/gruvbox-dark.yaml
+ln -s ${BASEDIR}/.config/k9s/aliases.yaml ~/.config/k9s/aliases.yaml
+ln -s ${BASEDIR}/.config/k9s/hotkeys.yaml ~/.config/k9s/hotkeys.yaml
+ln -s ${BASEDIR}/.config/k9s/skins/gruvbox-dark.yaml ~/.config/k9s/skins/gruvbox-dark.yaml
+

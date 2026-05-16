@@ -1,0 +1,19 @@
+aliases:
+  dp: deployments
+  sec: v1/secrets
+  jo: jobs
+  cr: clusterroles
+  crb: clusterrolebindings
+  ro: roles
+  rb: rolebindings
+  np: networkpolicies
+  pdb: poddisruptionbudgets
+  hpa: horizontalpodautoscalers
+  pvc: persistentvolumeclaims
+  sc: storageclasses
+  sa: serviceaccounts
+  ev: events
+  ing: ingresses
+  cj: cronjobs
+  ds: daemonsets
+  ss: statefulsets

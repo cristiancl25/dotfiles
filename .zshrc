@@ -106,6 +106,8 @@ export PATH="$HOME/.asdf/bin:${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$HOME/go/bin:$P
 # set -o vi
 alias v=nvim
 alias vf='nvim $(fzf)'
+alias lg='lazygit'
+alias lgl='lazygit log'
 alias bat='bat --color=always --theme gruvbox-dark --style=plain'
 alias fzf='fzf --preview="bat --color=always --theme gruvbox-dark --style=plain {}" -m'
 alias k=kubectl
