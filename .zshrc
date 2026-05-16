@@ -105,11 +105,10 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$HOME/.asdf/bin:${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$HOME/go/bin:$PATH"
 # set -o vi
 alias v=nvim
-alias vf='nvim $(fzf)'
+alias vf='nvim "$(fzf)"'
 alias lg='lazygit'
 alias lgl='lazygit log'
-alias bat='bat --color=always --theme gruvbox-dark --style=plain'
-alias fzf='fzf --preview="bat --color=always --theme gruvbox-dark --style=plain {}" -m'
+alias bat='batcat'
 alias k=kubectl
 alias kx=kubectx
 alias kcuc='kubectl config unset contexts'
@@ -132,7 +131,31 @@ export WHOME="/mnt/c/Users/Comercial/"
 export BROWSER="/mnt/c/Program\ Files/Mozilla\ Firefox/firefox.exe"
 export EDITOR=nvim
 export PROJECTS_HOME=${HOME}/projects
+
+# bat as MANPAGER
+export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+export MANROFFOPT="-c"
+
+# fzf
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --exclude .git'
+export FZF_DEFAULT_OPTS="
+  --layout=reverse
+  --border=rounded
+  --info=inline
+  --multi
+  --preview='batcat {}'
+  --preview-window=right:60%:wrap
+  --color=bg+:#3c3836,bg:#282828,spinner:#fb4934,hl:#fabd2f
+  --color=fg:#ebdbb2,header:#fb4934,info:#fabd2f,pointer:#fb4934
+  --color=marker:#fb4934,fg+:#ebdbb2,prompt:#fabd2f,hl+:#fb4934
+"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview 'batcat {}'"
+export FZF_ALT_C_COMMAND="fd --type d --hidden --exclude .git"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --level=2 {}'"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window=down:3:hidden:wrap --bind '?:toggle-preview'"
+source <(fzf --zsh) 2>/dev/null || true
+
 # TestContainers
 export DOCKER_HOST=unix:///run/user/1000/podman/podman.sock
 export TESTCONTAINERS_RYUK_DISABLED=true #https://stackoverflow.com/questions/71549856/testcontainers-with-podman-in-java-tests
