@@ -16,3 +16,8 @@ ln -s ${BASEDIR}/.tool-versions ~/.tool-versions
 rm ~/.zshrc
 ln -s ${BASEDIR}/.zshrc ~/.zshrc
 
+# git (solo el fichero config, para no pisar ~/.config/git/ignore u otros)
+mkdir -p ~/.config/git
+rm -f ~/.config/git/config
+ln -s ${BASEDIR}/.config/git/config ~/.config/git/config
+
