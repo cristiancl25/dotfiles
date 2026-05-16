@@ -21,3 +21,8 @@ mkdir -p ~/.config/git
 rm -f ~/.config/git/config
 ln -s ${BASEDIR}/.config/git/config ~/.config/git/config
 
+# lazygit
+mkdir -p ~/.config/lazygit
+rm -f ~/.config/lazygit/config.yml
+ln -s ${BASEDIR}/.config/lazygit/config.yml ~/.config/lazygit/config.yml
+
