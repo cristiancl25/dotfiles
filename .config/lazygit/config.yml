@@ -1,0 +1,24 @@
+gui:
+  nerdFontsVersion: "3"
+  showCommandLog: false
+  showBottomLine: false
+  scrollHeight: 4
+  sidePanelWidth: 0.3
+  mainPanelSplitMode: 'horizontal'
+  showRandomTip: false
+  theme:
+    activeBorderColor: ['#fabd2f', 'bold']
+    inactiveBorderColor: ['#7c6f64']
+    selectedLineBgColor: ['#3c3836']
+
+git:
+  paging:
+    pager: delta --paging=never --side-by-side
+  pull:
+    mode: 'rebase'
+  branchLogCmd: 'git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --'
+
+os:
+  editPreset: 'nvim'
+  edit: 'nvim {{filename}}'
+  editAtLine: 'nvim +{{line}} {{filename}}'
